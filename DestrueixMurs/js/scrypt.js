@@ -5,7 +5,7 @@ canvas.height = 512;
 canvas.width = 448;
 
 // Variables Pilotes
-const radiPilota = 4;
+let radiPilota = 4;
 
 let x = canvas.width / 2
 let y = canvas.height - 30
@@ -15,7 +15,7 @@ let dx = 2
 let dy = -2
 
 //Variables Pala
-const amplePala = 50;
+let amplePala = 50;
 const alturaPala = 10;
 
 let sensibilitat = 8;
@@ -91,6 +91,26 @@ function inicialitzadorEvents(){
         if(event.key =='ArrowLeft' || event.key =='a'){
             esquerra = true;
         }
+        if(event.key == '+'){
+            amplePala = amplePala*2
+            palaX = (canvas.width - amplePala)/2;
+        }
+        if(event.key == '-'){
+            amplePala = amplePala/2
+            palaX = (canvas.width - amplePala)/2;   
+        }
+        if(event.key == 'u'){
+            radiPilota = radiPilota*2
+        }
+        if(event.key == 'j'){
+            radiPilota = radiPilota/2
+        }
+        if(event.key == 'i'){
+            sensibilitat = sensibilitat*2
+        }
+        if(event.key == 'o'){
+            sensibilitat = sensibilitat/2
+                    }
 
     }
 
