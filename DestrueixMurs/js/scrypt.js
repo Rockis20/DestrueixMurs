@@ -1,8 +1,10 @@
-const canvas = document.getElementById("canvas")
+canvas = document.getElementById("canvas")
 const ctx = canvas.getContext("2d")
 
 canvas.height = 512;
 canvas.width = 448;
+//Variables Vida
+let vida = 3
 
 // Variables Pilotes
 let radiPilota = 4;
@@ -35,17 +37,15 @@ function pintarPilota(){
 function pintarPala(){
     ctx.fillStyle = "#FFF";
     ctx.fillRect(palaX, palaY, amplePala, alturaPala);
-
-    
-
-
-
 }
 function pintarMurs(){
 
 
 }
 function detecciColisio(){
+if(y + radiPilota >= palaY - alturaPala/2 && y <=palaY && x >= palaX && x <= palaX + amplePala){
+    dy=-dy
+}
 
 
 }
@@ -60,8 +60,15 @@ function movimentPilota(){
     }
     //GAME OVER
     if(y  + dy > canvas.height ){
+        vida -- 
+        x = canvas.width / 2
+        y = canvas.height - 30
+    dx = 2
+    dy = -2
+    if(vida==0){
         console.log("GAMEOVER")
         document.location.reload();
+    }
     }
     x += dx
     y += dy
@@ -76,7 +83,7 @@ function movimentPala(){
 
 }
 function borrarPantalla(){
-    canvas.height = 512;
+    canvas.height = 512;        
     canvas.width = 448;
 }
 
@@ -108,10 +115,27 @@ function inicialitzadorEvents(){
         if(event.key == 'i'){
             sensibilitat = sensibilitat*2
         }
-        if(event.key == 'o'){
+        if(event.key == 'k'){
             sensibilitat = sensibilitat/2
-                    }
-
+        }
+        if(event.key == 'o'){
+            dx=dx*2
+            dy=dy*2
+        }
+        if(event.key == 'l'){
+            dx=dx/2
+            dy=dy/2
+        }
+        if(event.key == 'f'){
+            dxn=dx;
+            dyn=dy;
+            dx= 0;
+            dy= 0;
+            setTimeout(() =>{
+                dx=dxn
+                dy=dyn
+            },3000)
+        }
     }
 
     function soltar(event){
@@ -136,6 +160,7 @@ function pintarCanvas(){
     movimentPilota();
     movimentPala();
     window.requestAnimationFrame(pintarCanvas);
+    ctx.fillText("VIDA:"+vida,10,10);
 }
 
 pintarCanvas();
