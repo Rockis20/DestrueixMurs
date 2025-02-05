@@ -3,6 +3,37 @@ const ctx = canvas.getContext("2d")
 
 canvas.height = 512;
 canvas.width = 448;
+
+//Variables des MEXICANS
+const files = 6
+const columnes = 12
+const ampleMur = 30;
+const alturaMur = 14;
+const margeTmur = 80;
+const margeEmur = 30;
+const sepMurs = 2;
+
+const murs = []
+const ESTAT_MUR = {
+    DESTRUIT: 0,
+    SHOW: 1
+}
+
+for(let c=0; c<columnes; c++){
+    murs[c] = []
+    for(let f=0; f<files; f++){
+        const murX = margeEmur+c*(ampleMur+sepMurs)
+        const murY = margeTmur+f*(alturaMur+sepMurs)
+        murs[c][f] = {
+            x: murX,
+            y: murY,
+            status: ESTAT_MUR.SHOW,
+            color:"#FFF"
+        }
+    }
+}
+
+
 //Variables Vida
 let vida = 3
 
@@ -39,7 +70,17 @@ function pintarPala(){
     ctx.fillRect(palaX, palaY, amplePala, alturaPala);
 }
 function pintarMurs(){
-
+    for(let c=0; c<columnes; c++){
+        for(let f=0; f<files; f++){
+            const murActual = murs[c][f];
+            if(murActual.status == ESTAT_MUR.DESTRUIT){
+                continue;
+            }
+            ctx.fillStyle = murActual.color;
+            ctx.rect(murActual.x,murActual.y,ampleMur,alturaMur)
+            ctx.fill();
+        }
+    }
 
 }
 function detecciColisio(){
@@ -106,27 +147,27 @@ function inicialitzadorEvents(){
             amplePala = amplePala/2
             palaX = (canvas.width - amplePala)/2;   
         }
-        if(event.key == 'u'){
+        if(event.key == 'z'){
             radiPilota = radiPilota*2
         }
-        if(event.key == 'j'){
+        if(event.key == 'x'){
             radiPilota = radiPilota/2
         }
-        if(event.key == 'i'){
+        if(event.key == 'c'){
             sensibilitat = sensibilitat*2
         }
-        if(event.key == 'k'){
+        if(event.key == 'v'){
             sensibilitat = sensibilitat/2
         }
-        if(event.key == 'o'){
+        if(event.key == 'b'){
             dx=dx*2
             dy=dy*2
         }
-        if(event.key == 'l'){
+        if(event.key == 'n'){
             dx=dx/2
             dy=dy/2
         }
-        if(event.key == 'f'){
+        if(event.key == 'm'){
             dxn=dx;
             dyn=dy;
             dx= 0;
@@ -160,7 +201,7 @@ function pintarCanvas(){
     movimentPilota();
     movimentPala();
     window.requestAnimationFrame(pintarCanvas);
-    ctx.fillText("VIDA:"+vida,10,10);
+    ctx.fillText("VIDA:"+ vida,10,10);
 }
 
 pintarCanvas();
