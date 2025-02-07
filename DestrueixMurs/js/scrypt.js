@@ -33,7 +33,6 @@ for(let c=0; c<columnes; c++){
     }
 }
 
-
 //Variables Vida
 let vida = 3
 
@@ -66,8 +65,10 @@ function pintarPilota(){
     ctx.closePath();
 }
 function pintarPala(){
-    ctx.fillStyle = "#FFF";
-    ctx.fillRect(palaX, palaY, amplePala, alturaPala);
+    ctx.drawImage(
+        sprite,
+
+    )
 }
 function pintarMurs(){
     for(let c=0; c<columnes; c++){
