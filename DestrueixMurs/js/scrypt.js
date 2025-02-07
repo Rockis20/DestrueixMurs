@@ -22,13 +22,14 @@ const ESTAT_MUR = {
 for(let c=0; c<columnes; c++){
     murs[c] = []
     for(let f=0; f<files; f++){
+        let color = Math.floor(Math.random()*3)
         const murX = margeEmur+c*(ampleMur+sepMurs)
         const murY = margeTmur+f*(alturaMur+sepMurs)
         murs[c][f] = {
             x: murX,
             y: murY,
             status: ESTAT_MUR.SHOW,
-            color:"#FFF"
+            color: color
         }
     }
 }
