@@ -19,6 +19,9 @@ const ESTAT_MUR = {
     SHOW: 1
 }
 
+const Sprites = document.getElementById("sprites")
+const Murs = document.getElementById("murs")
+
 for(let c=0; c<columnes; c++){
     murs[c] = []
     for(let f=0; f<files; f++){
@@ -67,8 +70,15 @@ function pintarPilota(){
 }
 function pintarPala(){
     ctx.drawImage(
-        sprite,
-
+    Sprites,
+    0,
+    0,
+    807,
+    118,
+    palaX,
+    palaY,
+    amplePala,
+    alturaPala,
     )
 }
 function pintarMurs(){
@@ -90,8 +100,24 @@ if(y + radiPilota >= palaY - alturaPala/2 && y <=palaY && x >= palaX && x <= pal
     dy=-dy
 }
 
+for(let c=0; c<columnes; c++){
+    for(let f=0; f<files; f++){
+        const murActual = murs[c][f];
+        if(murActual.status == ESTAT_MUR.DESTRUIT){
+            continue;
+        }
+        const mateixaXmur =  x > murActual.x && x < murActual.x + ampleMur;
+        const mateixaYmur =  y > murActual.y && y < murActual.y + alturaMur;
+        if( mateixaXmur & mateixaYmur){
+            dy = -dy
+            murActual.status = ESTAT_MUR.DESTRUIT
+        }
+    }
+}
 
 }
+
+
 function movimentPilota(){
     //REBOT EIX X
     if(x + dx >= canvas.width|| x + dx <= 0){
@@ -116,6 +142,7 @@ function movimentPilota(){
     x += dx
     y += dy
 }
+
 function movimentPala(){
     if(dreta && palaX < canvas.width - amplePala){
         palaX += sensibilitat
@@ -125,6 +152,7 @@ function movimentPala(){
 
 
 }
+
 function borrarPantalla(){
     canvas.height = 512;        
     canvas.width = 448;
