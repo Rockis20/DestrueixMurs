@@ -25,7 +25,7 @@ const Murs = document.getElementById("murs")
 for(let c=0; c<columnes; c++){
     murs[c] = []
     for(let f=0; f<files; f++){
-        let color = Math.floor(Math.random()*3)
+        let color = Math.floor(Math.random()*6)
         const murX = margeEmur+c*(ampleMur+sepMurs)
         const murY = margeTmur+f*(alturaMur+sepMurs)
         murs[c][f] = {
@@ -64,7 +64,7 @@ let palaY = canvas.height - alturaPala - 10
 function pintarPilota(){
     ctx.beginPath();
     ctx.arc(x, y, radiPilota, 0, Math.PI*2);
-    ctx.fillStyle = "#FFF";
+    ctx.fillStyle = "#17202a ";
     ctx.fill();
     ctx.closePath();
 }
@@ -73,8 +73,8 @@ function pintarPala(){
     Sprites,
     0,
     0,
-    807,
-    118,
+    1455,
+    112,
     palaX,
     palaY,
     amplePala,
@@ -88,9 +88,18 @@ function pintarMurs(){
             if(murActual.status == ESTAT_MUR.DESTRUIT){
                 continue;
             }
-            ctx.fillStyle = murActual.color;
-            ctx.rect(murActual.x,murActual.y,ampleMur,alturaMur)
-            ctx.fill();
+            let clipX = murActual.color *(1438/6)
+            ctx.drawImage(
+                Murs,
+                clipX,
+                0,
+                (1438/6),
+                239,
+                murActual.x,
+                murActual.y,
+                ampleMur,
+                alturaMur
+            )
         }
     }
 

@@ -1,10 +1,20 @@
 body{
-    background: black;
+    background: linear-gradient(135deg, #87CEEB, #B0E0E6, #E0FFFF);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+h1{
+    
 }
 
 canvas{
-    border: 4px solid white;
+    border: 4px solid white; 
     margin: 0 auto;
     display: block; 
     border-bottom: transparent;
+    background-image: url(https://i.pinimg.com/736x/08/4f/a1/084fa17cb891413701fc567f31155036.jpg);
+    background-repeat: no-repeat; 
+    background-position: center; 
+    background-size: cover; 
 }         
