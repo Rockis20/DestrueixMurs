@@ -68,6 +68,7 @@ function pintarPilota(){
     ctx.fill();
     ctx.closePath();
 }
+
 function pintarPala(){
     ctx.drawImage(
     Sprites,
@@ -81,6 +82,7 @@ function pintarPala(){
     alturaPala,
     )
 }
+
 function pintarMurs(){
     for(let c=0; c<columnes; c++){
         for(let f=0; f<files; f++){
@@ -104,6 +106,7 @@ function pintarMurs(){
     }
 
 }
+
 function detecciColisio(){
 if(y + radiPilota >= palaY - alturaPala/2 && y <=palaY && x >= palaX && x <= palaX + amplePala){
     dy=-dy
