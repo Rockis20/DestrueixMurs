@@ -1,7 +1,7 @@
 body{
-    background: linear-gradient(135deg, #87CEEB, #B0E0E6, #E0FFFF);
-    background-size: cover;
-    background-attachment: fixed;
+    background-image: url(https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2022/05/mejores-shaders-minecraft-2694653.jpg?tf=3840x);
+    background-repeat: no-repeat; 
+    background-size: cover; 
 }
 
 h1{
